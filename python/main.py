@@ -11,14 +11,14 @@ import string
 # Insert a user.
 @app.route('/insert', methods=['POST'])
 def insertUser():
-    try:
-	    _json = request.json
+	try:
+		_json = request.json
 		_fullName = _json['fullName']
 		_userName = _json['userName']
-    	_changedTime = _json['changedTime']
-    	_tenantId = _json['tenantId']
-    	_active = _json['active']
-    	_userPassword = password_generator.generatePwd(12, string.letters)
+		_changedTime = _json['changedTime']
+		_tenantId = _json['tenantId']
+		_active = "True"
+		_userPassword = password_generator.generatePwd(12, string.letters)
 
 		# validate the received values
 		if _fullName and _userName and _active and _changedTime and _tenantId and request.method == 'POST':
@@ -80,10 +80,10 @@ def update_user():
 		_json = request.json
 		_fullName = _json['fullName']
 		_userName = _json['userName']
-        _active = _json['active']
-        _changedTime = _json['changedTime']
-        _tenantId = _json['tenantId']
-        _userPassword = generatePwd(12, string.letters)
+		_active = "True"
+		_changedTime = _json['changedTime']
+		_tenantId = _json['tenantId']
+		_userPassword = generatePwd(12, string.letters)
 
 		# validate the received values
 		if _fullName and _userName and _active and _changedTime and _tenantId and request.method == 'POST':
@@ -107,14 +107,14 @@ def update_user():
 # Error handling
 @app.errorhandler(404)
 def not_found(error=None):
-    message = {
-        'status': 404,
-        'message': 'Not Found: ' + request.url
-    }
-    resp = jsonify(message)
-    resp.status_code = 404
+	message = {
+		'status': 404,
+		'message': 'Not Found: ' + request.url
+	}
+	resp = jsonify(message)
+	resp.status_code = 404
 
-    return resp
+	return resp
 
 if __name__ == "__main__":
-    app.run()
+	app.run()
