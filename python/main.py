@@ -17,10 +17,10 @@ def insertUser():
 		_json = request.json
 		_fullName = _json['fullName']
 		_userName = _json['userName']
-		_changedTime = _json['changedTime']
 		_tenantId = _json['tenantId']
 		_active = "True"
 		_userPassword = generatePwd(12, string.letters)
+		_changedTime = datetime.now()
 
 		# validate the received values
 		if _fullName and _userName and _active and _changedTime and _tenantId and request.method == 'POST':

@@ -2,8 +2,8 @@
 
 # Building docker images.
 number_of_containers=$(docker ps | grep -i web-service | wc -l)
-container_name=$(docker ps | grep -i web-service | awk '{ print $12 }')
-image_name=$(docker ps | grep -i web-service | awk '{ print $1 }')
+container_name=$(docker ps | grep -i web-service | awk '{ print $1 }')
+image_name=$(docker images | grep -i web-service | awk '{ print $3 }')
 current_time_stamp=$(date +"%I%M%S")
 
 if [ $number_of_containers -ge 1 ]; then
