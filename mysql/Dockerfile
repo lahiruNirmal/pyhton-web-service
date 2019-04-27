@@ -5,4 +5,5 @@ ENV MYSQL_ROOT_PASSWORD=password
 ENV MYSQL_PASSWORD=password
 EXPOSE 3306
 COPY ./bootstrap.sql docker-entrypoint-initdb.d/
-RUN chmod 700 /docker-entrypoint-initdb.d/
+# RUN chmod 700 /docker-entrypoint-initdb.d/
+RUN chown -R mysql:mysql /docker-entrypoint-initdb.d/

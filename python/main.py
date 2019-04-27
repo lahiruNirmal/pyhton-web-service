@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import pymysql
 from flask import flash, request
 from db_configuration import mysql
@@ -18,11 +20,17 @@ def insertUser():
 		_changedTime = _json['changedTime']
 		_tenantId = _json['tenantId']
 		_active = "True"
-		_userPassword = password_generator.generatePwd(12, string.letters)
+		_userPassword = generatePwd(12, string.letters)
 
 		# validate the received values
 		if _fullName and _userName and _active and _changedTime and _tenantId and request.method == 'POST':
 			sql = "INSERT INTO USER(FULL_NAME, USER_NAME, USER_PASSWORD, ACTIVE, CHANGED_TIME, TENANT_ID) VALUES(%s, %s, %s, %s, %s, %i)"
+			
+			if _active == "True":
+				_active = 1
+			else:
+				_active = 0
+			
 			data = (_fullName, _userName, _userPassword, _active, _changedTime, _tenantId)
 			conn = mysql.connect()
 			cursor = conn.cursor()
@@ -117,4 +125,4 @@ def not_found(error=None):
 	return resp
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(host="0.0.0.0", port=8080)
