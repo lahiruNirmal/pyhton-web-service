@@ -1,3 +1,5 @@
+-----------Created by Lahiru Wijesuriya-------------
+
 USE test-db;
 
 CREATE TABLE USER (

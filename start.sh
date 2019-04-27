@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Building docker images.
+# -----------Created by Lahiru Wijesuriya-------------
 number_of_containers=$(docker ps | grep -i web-service | wc -l)
 container_name=$(docker ps | grep -i web-service | awk '{ print $1 }')
 image_name=$(docker images | grep -i web-service | awk '{ print $3 }')
@@ -21,5 +21,4 @@ else
     mysql_host=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql)
     docker build -t web-service:$current_time_stamp ./python/
     docker run -itd -p 8080:8080 -e MYSQL_DATABASE_HOST=$mysql_host --name web-service web-service:$current_time_stamp
-    
 fi
