@@ -15,7 +15,9 @@
 
 #### Get all users in the table
   curl -X GET http://localhost:8080/users
+#### Get a single user
+  curl -d _tenantId=1 -d _userName=lahiru -G localhost:8080/user/
 #### Insert a user to the table 
-  curl -d '{"fullName":"Lahiru Wijesuriya", "userName":"lahiru", "tenantId":1}' -H "Content-Type: application/json" -X POST localhost:8080/insert
-#### Update a user in the table - curl -d _tenantId=1 -d _userName=lahiru -G localhost:8080/user/
-  curl -d '{"fullName":"Lahiru Wijesuriya_1", "userName":"lahiru_2", "tenantId":5}' -H "Content-Type: application/json" -X POST localhost:8080/update
+  curl -d '{"fullName":"Lahiru Wijesuriya", "userName":"lahiru", "tenantId":1}' -H "Content-Type: application/json" -X POST   localhost:8080/insert
+#### Update a user in the table 
+  curl -d '{"fullName":"Lahiru Wijesuriya_1", "userName":"lahiru_2", "tenantId":5}' -H "Content-Type: application/json" -X POST           localhost:8080/update
